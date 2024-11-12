@@ -1,0 +1,13 @@
+/* Don't limit height of ACF taxonomy fields */
+.acf-taxonomy-field .categorychecklist-holder {
+    max-height: none !important;
+}
+
+.acf-checkbox-list {
+    columns: 2;
+    column-gap: 3rem;
+    
+    li {
+        break-inside: avoid;
+    }
+}

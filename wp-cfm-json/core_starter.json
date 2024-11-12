@@ -1,0 +1,18 @@
+{
+    "comments_notify": "1",
+    "default_category": "1",
+    "default_comment_status": "",
+    "default_ping_status": "",
+    "large_size_h": "1280",
+    "large_size_w": "1280",
+    "medium_size_h": "400",
+    "medium_size_w": "400",
+    "page_comments": "",
+    "permalink_structure": "\/blog\/%postname%\/",
+    "show_avatars": "",
+    "thumbnail_size_h": "250",
+    "thumbnail_size_w": "250",
+    "timezone_string": "America\/Los_Angeles",
+    "tax\/category": "[{\"term_id\":1,\"name\":\"News\",\"slug\":\"news\",\"description\":\"\",\"parent\":0}]",
+    ".label": "core_starter"
+}
