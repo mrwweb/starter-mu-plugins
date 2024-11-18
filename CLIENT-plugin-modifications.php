@@ -1,11 +1,13 @@
 <?php
-/*
-Plugin Name: Modifications to plugin behavior and output
-Description: Central location for changing behavior of plugins. Plugins modified: Advanced Custom Fields PRO, Archived Post Status, WP-CFM
-Version: 1.0.0
-Author: Mark Root-Wiley, MRW Web Design
-Author URI: https://MRWweb.com
-*/
+/**
+ * Plugin Name: Modifications to plugin behavior and output
+ * Description: Central location for changing behavior of plugins. Plugins modified: Advanced Custom Fields PRO, Archived Post Status, WP-CFM
+ * Version: 1.0.0
+ * Author: Mark Root-Wiley, MRW Web Design
+ * Author URI: https://MRWweb.com
+ *
+ * @package _mrw-mu-plugins
+ */
 
 namespace _MRW_\Plugins;
 
