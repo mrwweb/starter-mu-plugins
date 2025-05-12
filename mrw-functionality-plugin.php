@@ -78,6 +78,12 @@ function cleanup_admin_bar() {
 	$wp_admin_bar->remove_menu( 'customize' );
 	$wp_admin_bar->remove_menu( 'search' );
 
+	$account = $wp_admin_bar->get_node( 'my-account' );
+	$wp_admin_bar->add_node( array(
+		'id' => 'my-account',
+		'title' => str_replace( 'Howdy, ', '', $account->title ),
+	) );
+
 	/* Plugin-specific */
 	$wp_admin_bar->remove_menu( 'edd-store-menu' ); // easy digital downloads
 	$wp_admin_bar->remove_menu( 'content_audit' ); // content audit plugin
