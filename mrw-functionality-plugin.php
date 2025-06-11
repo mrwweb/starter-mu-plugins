@@ -20,17 +20,13 @@ if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 	);
 }
 
-add_action( 'init', __NAMESPACE__ . '\cleanup_head' );
+add_action( 'init', __NAMESPACE__ . '\feed_links' );
 /**
  * Clean up the <head> to remove generator links and ensure RSS support
  *
  * @return void
  */
-function cleanup_head() {
-	remove_action( 'wp_head', 'rsd_link' );
-	remove_action( 'wp_head', 'wlwmanifest_link' );
-	remove_action( 'wp_head', 'wp_generator' );
-
+function feed_links() {
 	add_theme_support( 'automatic-feed-links' );
 }
 
