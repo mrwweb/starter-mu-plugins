@@ -9,7 +9,7 @@
  * @package _mrw-mu-plugins
  */
 
-namespace _MRW_\Plugins;
+namespace _CLIENT\Site;
 
 require_once 'plugin-modifications/advanced-custom-fields-pro.php';
 require_once 'plugin-modifications/archived-post-status.php';

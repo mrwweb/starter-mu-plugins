@@ -8,3 +8,6 @@
  *
  * @package _mrw-mu-plugins
  */
+
+namespace _CLIENT\Site;
+

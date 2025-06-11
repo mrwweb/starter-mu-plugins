@@ -9,7 +9,7 @@
  * @package _mrw-mu-plugins
  */
 
-namespace _MRW_\Admin;
+namespace MRW\Site;
 
 if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 	add_action(
