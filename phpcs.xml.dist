@@ -82,9 +82,10 @@
 		 Multiple valid prefixes can be provided as a comma-delimited list. -->
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
-            <property name="prefixes"
-                      type="array"
-                      value="_mrw" />
+            <property name="prefixes" type="array">
+                <element value="MRW" />
+                <element value="_CLIENT" />
+            </property> 
         </properties>
     </rule>
     <!-- #############################################################################

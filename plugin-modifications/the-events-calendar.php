@@ -1,12 +1,12 @@
 <?php
-/*
-Plugin Name: The Events Calendar Customizations
-Description: An assortment of changes to how The Events Calendar behaves. You are encouraged to delete, add, and revise this file to meet your needs!
-Version: 2.2.1
-Author: Mark Root-Wiley, MRW Web Design
-Author URI: https://MRWweb.com
-Plugin URI: https://github.com/mrwweb/the-events-calendar-reset
-*/
+/**
+ * Plugin Name: The Events Calendar Customizations
+ * Description: An assortment of changes to how The Events Calendar behaves. You are encouraged to delete, add, and revise this file to meet your needs!
+ * Version: 2.2.1
+ * Author: Mark Root-Wiley, MRW Web Design
+ * Author URI: https://MRWweb.com
+ * Plugin URI: https://github.com/mrwweb/the-events-calendar-reset
+ */
 
 namespace MRW\TEC;
 
@@ -20,8 +20,7 @@ namespace MRW\TEC;
  * @link https://gist.github.com/samkent/b98bd3c9b28426b8461bc1417adf7b5d
  */
 function is_tec_view() {
-	return
-		\function_exists( 'tec_is_view' ) &&
+	return \function_exists( 'tec_is_view' ) &&
 		(
 			\tec_is_view() ||
 			'tribe_events' === get_post_type() ||
@@ -56,9 +55,9 @@ function return_organizer_name() {
  * Remove post_tag from tribe_events post_type
  */
 function no_tags_on_events( $args ) {
-    $args['taxonomies'] = [];
+	$args['taxonomies'] = [];
 
-    return $args;
+	return $args;
 }
 
 \add_action( 'pre_get_posts', __NAMESPACE__ . '\no_events_in_tag_archives' );
@@ -66,11 +65,11 @@ function no_tags_on_events( $args ) {
  * Exclude tribe_events posts from tag archives
  */
 function no_events_in_tag_archives( $query ) {
-	if( ! \is_admin() && ! $query->is_main_query() ) {
+	if ( ! \is_admin() && ! $query->is_main_query() ) {
 		return;
 	}
 
-	if( \is_tag() ) {
+	if ( \is_tag() ) {
 		$query->set( 'post_type', [ 'post' ] );
 	}
 }
@@ -84,20 +83,24 @@ function no_events_in_tag_archives( $query ) {
 function default_blocks( $template ) {
 	$template = [
 		[ 'tribe/event-datetime' ],
-		[ 'core/paragraph', [ 
-			'placeholder' => __( 'Add Description…', 'the-events-calendar' ), 
-		], ],
+		[
+			'core/paragraph',
+			[
+				'placeholder' => __( 'Add Description…', 'the-events-calendar' ),
+			],
+		],
 		[ 'tribe/event-website' ],
 		[ 'tribe/event-venue' ],
 	];
-	/* 
+
+	/*
 	Alternatively, you can use a theme pattern!
 	$template = array( array(
-        'core/pattern',
-        array(
-            'slug' => 'eec/default-tribe_events',
-        ),
-    ) );
+		'core/pattern',
+		array(
+			'slug' => 'eec/default-tribe_events',
+		),
+	) );
 	*/
 	return $template;
 }
@@ -114,10 +117,10 @@ function default_blocks( $template ) {
  *
  * @param array $template_vars An array of variables used to display the current view.
  *
- * @return array Same as above. 
+ * @return array Same as above.
  */
 function tribe_past_reverse_chronological_v2( $template_vars ) {
-	if ( ! \empty( $template_vars['is_past'] ) ) {
+	if ( ! empty( $template_vars['is_past'] ) ) {
 		$template_vars['events'] = \array_reverse( $template_vars['events'] );
 	}
 
@@ -127,7 +130,7 @@ function tribe_past_reverse_chronological_v2( $template_vars ) {
 \add_filter( 'tribe_template_html', __NAMESPACE__ . '\prevent_ajax_page_loads', 10, 4 );
 /**
  * Prevent AJAX page loads by removing the data-js attribute that triggers them
- * 
+ *
  * Due to the number of changes required via PHP templates and filters (Category filters, archive titles, etc.), the AJAX page loads cause more problems than they solve
  */
 function prevent_ajax_page_loads( $html, $file, $name, $template ) {
@@ -141,19 +144,18 @@ function prevent_ajax_page_loads( $html, $file, $name, $template ) {
  * Known issue: does not work with AJAX page. Reverts to "Events"
  */
 function archive_title( $title ) {
-    if( 'tribe_events' === \get_post_type() ) {
+	if ( 'tribe_events' === \get_post_type() ) {
 
-        if( \tribe_is_past() || ( $_GET['eventDisplay'] ?? '' ) === 'past' ) {
-            $title = 'Past Events';
-        } elseif ( \tribe_is_upcoming() ) {
+		if ( \tribe_is_past() || ( esc_attr( $_GET['eventDisplay'] ) ?? '' ) === 'past' ) {
+			$title = 'Past Events';
+		} elseif ( \tribe_is_upcoming() ) {
 			$title = 'Upcoming Events';
 		} else {
-			$title = "Events";
-        }
+			$title = 'Events';
+		}
+	}
 
-    }
-
-    return $title;
+	return $title;
 }
 
 \add_action( 'tribe_template_after_include:events/v2/components/before', __NAMESPACE__ . '\events_archive_header', 9 );
@@ -164,7 +166,7 @@ function archive_title( $title ) {
  * https://wordpress.org/plugins/post-type-archive-descriptions/
  */
 function events_archive_header() {
-    \the_archive_title( '<h1 class="archive-title page-title">', '</h1>' );
+	\the_archive_title( '<h1 class="archive-title page-title">', '</h1>' );
 }
 
 /**

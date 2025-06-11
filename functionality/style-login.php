@@ -19,7 +19,7 @@ function login_styles() {
 	?>
 	<style type="text/css">
 		body.login {
-			background-color: ;
+			background-color: #eee;
 		}
 		body.login div#login h1 {
 			text-align: center;
@@ -34,17 +34,17 @@ function login_styles() {
 			max-width: 100%;			
 		}
 		#loginform {
-			background-color: ;
-			border-color: ;
+			background-color: #fff;
+			border-color: #ddd;
 		}
 		#wp-submit {
-			background-color: ;
-			border-color: ;
+			background-color: rebeccapurple;
+			border-color: rebeccapurple;
 		}
 		a,
 		body.login #nav a,
 		body.login #backtoblog a {
-			color: ;
+			color: blue;
 		}
 	</style>
 	<?php

@@ -7,7 +7,7 @@
  * @package _mrw-mu-plugins
  */
 
-namespace _MRW_\WPCFM;
+namespace MRW\WPCFM;
 
 add_filter( 'wpcfm_config_url', __NAMESPACE__ . '\change_config_url' );
 /**

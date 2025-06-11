@@ -7,7 +7,7 @@
  * @package _mrw-mu-plugins
  */
 
-namespace _MRW_\ACF;
+namespace MRW\ACF;
 
 add_action( 'acf/init', __NAMESPACE__ . '\remove_acf_shortcode' );
 /**
