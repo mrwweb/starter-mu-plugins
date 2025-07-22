@@ -12,9 +12,10 @@ It includes modifications of core WordPress along with configuration changes to 
 - Notify me of site errors rather than Admin Email
 - Automatic feed links
 - Set `DISALLOW_FILE_EDIT` to true
-- [email] shortcode for obfuscating email addresses
+- [email] shortcode for obfuscating email addresses and making email links with pre-filled subjects
 - Enqueue a stylesheet for adding CSS to the admin
 - Add Featured Image and Excerpt support to Pages
+- Add Announcement Banner feature (depends on ACF)
 
 ## Plugin Configuration
 
@@ -26,4 +27,5 @@ It includes modifications of core WordPress along with configuration changes to 
 ### WP-CFM Starter Settings
 
 - Core
+- Yoast SEO - Including if The Events Calendar, Content Audit, and WooCommerce are installed
 - Editoria11y - Helpful default elements and pages to ignore
