@@ -13,5 +13,6 @@ namespace _CLIENT\Site;
 
 require_once 'plugin-modifications/advanced-custom-fields-pro.php';
 require_once 'plugin-modifications/archived-post-status.php';
+require_once 'plugin-modifications/gravity-forms.php';
 require_once 'plugin-modifications/the-events-calendar.php';
 require_once 'plugin-modifications/wp-cfm.php';
