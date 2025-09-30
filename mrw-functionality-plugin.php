@@ -100,4 +100,7 @@ function login_logo_url_title() {
 
 require_once __DIR__ . '/functionality/remove-comments.php';
 require_once __DIR__ . '/functionality/site-error-emails.php';
-require_once __DIR__ . '/functionality/announcement-banner.php';
+if( ! class_exists('ACF') ) {
+	require_once __DIR__ . '/functionality/announcement-banner.php';
+}
+

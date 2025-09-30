@@ -26,7 +26,7 @@ function options_page() {
 
 // Required to use menu_order
 add_filter( 'custom_menu_order', '__return_true' );
-add_filter( 'menu_order', __NAMESPACE__ . '\menu_order', 10000 );
+add_filter( 'menu_order', __NAMESPACE__ . '\menu_order', 99999 );
 /**
  * Put announcement banner directly above Separator 1, even when Menu Humility plugin is active
  *
@@ -35,9 +35,11 @@ add_filter( 'menu_order', __NAMESPACE__ . '\menu_order', 10000 );
  */
 function menu_order( $menu ) {
 	$banner_key = array_search( 'banner-message', $menu );
+	$banner_item = $menu[$banner_key];
+	unset( $menu[$banner_key] );
 	$separator1_key = array_search( 'separator1', $menu );
-	array_splice( $menu, $separator1_key, 0, $menu[$banner_key] );
-	unset( $menu[$banner_key + 1] );
+	
+	array_splice( $menu, $separator1_key, 0, $banner_item );
 	
 	return $menu;
 }
