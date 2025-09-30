@@ -26,6 +26,10 @@ function admin_styles() {
 	);
 }
 
+if( ! class_exists('ACF') ) {
+	require_once __DIR__ . '/functionality/announcement-banner.php';
+}
 require_once __DIR__ . '/functionality/admin-bar.php';
 require_once __DIR__ . '/functionality/admin-menu.php';
 require_once __DIR__ . '/functionality/style-login.php';
+require_once __DIR__ . '/functionality/remove-comments.php';

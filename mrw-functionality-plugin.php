@@ -41,43 +41,6 @@ function page_post_type_supports() {
 	add_post_type_support( 'page', 'post-thumbnail' );
 }
 
-add_shortcode( 'email', __NAMESPACE__ . '\hide_email' );
-/**
- * Obfuscate email shortcode
- *
- * Simple Usage: [email]hello@example.org[/email]
- *
- * Advanced Usage: [email subject="Optional Subject" email="hello@example.com"]email us[/email]
- *
- * @param array  $atts with one optional parameter: subject
- * @param string $content content of shortcode which should be an email
- * @return string obfuscated email link
- */
-function hide_email( $atts, $content = null ) {
-	$atts = shortcode_atts(
-		array(
-			'subject' => '',
-			'email'   => false,
-		),
-		$atts,
-		'email'
-	);
-
-	if ( ! is_email( $content ) && ! is_email( $atts['email'] ) ) {
-		return;
-	}
-
-	$anchor = $content;
-	$email  = ! $atts['email'] ? $content : $atts['email'];
-
-	return sprintf(
-		'<a href="mailto:%1$s%2$s">%3$s</a>',
-		antispambot( $email ),
-		! empty( $atts['subject'] ) ? '?subject=' . rawurlencode( esc_attr( $atts['subject'] ) ) : '',
-		is_email( $anchor ) ? antispambot( $anchor ) : $anchor
-	);
-}
-
 add_filter( 'login_headerurl', __NAMESPACE__ . '\login_logo_url' );
 /**
  * Change URL of logo on login screen to go to site homepage
@@ -98,9 +61,5 @@ function login_logo_url_title() {
 	return esc_html( get_bloginfo( 'name' ) );
 }
 
-require_once __DIR__ . '/functionality/remove-comments.php';
 require_once __DIR__ . '/functionality/site-error-emails.php';
-if( ! class_exists('ACF') ) {
-	require_once __DIR__ . '/functionality/announcement-banner.php';
-}
-
+require_once __DIR__ . '/functionality/email-shortcode.php';
