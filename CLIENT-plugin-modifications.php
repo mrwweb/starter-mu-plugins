@@ -17,3 +17,4 @@ require_once 'plugin-modifications/gravity-forms.php';
 require_once 'plugin-modifications/the-events-calendar.php';
 require_once 'plugin-modifications/updraftplus.php';
 require_once 'plugin-modifications/wp-cfm.php';
+require_once 'plugin-modifications/yoast-seo.php';
