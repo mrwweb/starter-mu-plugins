@@ -89,8 +89,8 @@ function add_very_simple_acf_toolbar( $toolbars ) {
     return $toolbars;
 }
 
-add_action( 'admin_head', __NAMESPACE__ . '\admin_styles' );
-function admin_styles() {
+add_action( 'admin_head', __NAMESPACE__ . '\announcement_banner_admin_styles' );
+function announcement_banner_admin_styles() {
    ?>
    <style>
     .acf-field-625071dfc506e .acf-editor-wrap iframe {
