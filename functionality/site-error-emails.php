@@ -11,7 +11,7 @@ add_filter( 'recovery_mode_email', __NAMESPACE__ . '\recovery_mode_email' );
 /**
  * Sets the recovery mode to email address instead of the default Admin Email setting
  *
- * @param string $email array of data about error email
+ * @param array $email array of data about error email
  * @return array
  */
 function recovery_mode_email( $email ) {
