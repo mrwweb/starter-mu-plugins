@@ -26,6 +26,20 @@ function admin_styles() {
 	);
 }
 
+add_filter( 'get_the_archive_title', __NAMESPACE__ . '\archive_titles', 10, 2 );
+/**
+ * Strip title prefix from Archive titles
+ *
+ * @param string $title full title with prefix
+ * @param string $original_title title without prefix
+ * @return void
+ */
+function archive_titles( $title, $original_title ) {
+    $title = $original_title;
+
+    return $title;
+}
+
 if( ! class_exists('ACF') ) {
 	require_once __DIR__ . '/functionality/announcement-banner.php';
 }
