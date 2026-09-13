@@ -12,16 +12,17 @@ namespace _MRW\Site;
 add_action( 'acf/init', __NAMESPACE__ . '\options_page' );
 function options_page() {
 
-	acf_add_options_page( [
-		'page_title' 	=> 'Banner Message',
-		'menu_title'	=> 'Banner Message',
-		'menu_slug'		=> 'banner-message',
-		'capability'	=> 'manage_options',
-		'position'		=> 207,
-		'icon_url'		=> 'dashicons-megaphone',
-		'autoload'		=> true,
-	] );
-
+	acf_add_options_page(
+		[
+			'page_title'    => 'Banner Message',
+			'menu_title'    => 'Banner Message',
+			'menu_slug'     => 'banner-message',
+			'capability'    => 'manage_options',
+			'position'      => 207,
+			'icon_url'      => 'dashicons-megaphone',
+			'autoload'      => true,
+		]
+	);
 }
 
 // Required to use menu_order
@@ -34,31 +35,31 @@ add_filter( 'menu_order', __NAMESPACE__ . '\menu_order', 99999 );
  * @return array updated $menu order
  */
 function menu_order( $menu ) {
-	$banner_key = array_search( 'banner-message', $menu );
-	$banner_item = $menu[$banner_key];
-	unset( $menu[$banner_key] );
+	$banner_key  = array_search( 'banner-message', $menu );
+	$banner_item = $menu[ $banner_key ];
+	unset( $menu[ $banner_key ] );
 	$separator1_key = array_search( 'separator1', $menu );
-	
+
 	array_splice( $menu, $separator1_key, 0, $banner_item );
-	
+
 	return $menu;
 }
 
 add_action( 'wp_body_open', __NAMESPACE__ . '\banner_markup', -999 );
 function banner_markup() {
-	$show_banner = get_option( 'options_banner_state' );
-	$banner_content = get_option( 'options_banner_message' );
+	$show_banner                = get_option( 'options_banner_state' );
+	$banner_content             = get_option( 'options_banner_message' );
 	$banner_use_expiration_date = get_option( 'options_set_banner_expiration_date' );
-	$banner_expiration_date = get_option( 'options_banner_expiration_date' );
+	$banner_expiration_date     = get_option( 'options_banner_expiration_date' );
 
 	$banner = sprintf(
 		'<p class="announcement-banner">%1$s</p>',
 		wp_kses_post( $banner_content )
 	);
 
-	if( '1' === $show_banner && ! empty( $banner_content ) ) {
+	if ( '1' === $show_banner && ! empty( $banner_content ) ) {
 
-		if( '1' === $banner_use_expiration_date ) {
+		if ( '1' === $banner_use_expiration_date ) {
 
 			$now = wp_date( 'Ymd' );
 			if ( $now < $banner_expiration_date ) {
@@ -70,51 +71,49 @@ function banner_markup() {
 				delete_option( 'options_set_banner_expiration_date' );
 				delete_option( 'options_banner_expiration_date' );
 			}
-
 		} else {
 			// output content because banner is visible and not using expiration date
 			echo $banner;
 		}
 	}
-
 }
 
-add_filter( 'acf/fields/wysiwyg/toolbars' , __NAMESPACE__ . '\add_very_simple_acf_toolbar'  );
+add_filter( 'acf/fields/wysiwyg/toolbars', __NAMESPACE__ . '\add_very_simple_acf_toolbar' );
 function add_very_simple_acf_toolbar( $toolbars ) {
-    // remove the 'Basic' toolbar completely
-	$toolbars['Very Simple'] = array();
-    $toolbars['Very Simple'][1] = array( 'bold', 'italic', 'link', 'undo', 'redo' );
+	// remove the 'Basic' toolbar completely
+	$toolbars['Very Simple']    = array();
+	$toolbars['Very Simple'][1] = array( 'bold', 'italic', 'link', 'undo', 'redo' );
 
-    // return $toolbars - IMPORTANT!
-    return $toolbars;
+	// return $toolbars - IMPORTANT!
+	return $toolbars;
 }
 
 add_action( 'admin_head', __NAMESPACE__ . '\announcement_banner_admin_styles' );
 function announcement_banner_admin_styles() {
-   ?>
-   <style>
-    .acf-field-625071dfc506e .acf-editor-wrap iframe {
-        min-height: auto;
-        height: 3lh !important;
-    }
-    .announcement-banner-active #toplevel_page_banner-message .dashicons-megaphone::before {
-        margin: 5px 0 0 2px;
-        padding: 3px;
-        border-radius: 50%;
-        background-color: #52aa59;
-        color: #fff !important;
+	?>
+	<style>
+	.acf-field-625071dfc506e .acf-editor-wrap iframe {
+		min-height: auto;
+		height: 3lh !important;
+	}
+	.announcement-banner-active #toplevel_page_banner-message .dashicons-megaphone::before {
+		margin: 5px 0 0 2px;
+		padding: 3px;
+		border-radius: 50%;
+		background-color: #52aa59;
+		color: #fff !important;
 		width: 18px;
 		height: 18px;
 		font-size: 18px;
-    }
-   </style>
-   <?php
+	}
+	</style>
+	<?php
 }
 
 add_filter( 'admin_body_class', __NAMESPACE__ . '\admin_body_class' );
 function admin_body_class( $classes ) {
-    if ( get_option( 'options_banner_state' ) ) {
-        $classes .= ' announcement-banner-active ';
-    }
-    return $classes;
+	if ( get_option( 'options_banner_state' ) ) {
+		$classes .= ' announcement-banner-active ';
+	}
+	return $classes;
 }

@@ -31,7 +31,7 @@ add_filter( 'render_block_publishpress-authors/author-boxes-block', __NAMESPACE_
  */
 function author_block_link_fix( $block_content, $block ) {
 	// "Inline with Avatars" layout
-	if( $block['attrs']['selectedBoxId'] === 'ppma_boxes_1958' ) { // ⚠️ Make sure this ID is correct for your site
+	if ( $block['attrs']['selectedBoxId'] === 'ppma_boxes_1958' ) { // ⚠️ Make sure this ID is correct for your site
 		ob_start();
 		do_action( 'pp_multiple_authors_show_author_box', false, 'author-byline', false, true );
 		$block_content = ob_get_clean();

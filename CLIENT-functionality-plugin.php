@@ -35,12 +35,12 @@ add_filter( 'get_the_archive_title', __NAMESPACE__ . '\archive_titles', 10, 2 );
  * @return void
  */
 function archive_titles( $title, $original_title ) {
-    $title = $original_title;
+	$title = $original_title;
 
-    return $title;
+	return $title;
 }
 
-if( ! class_exists('ACF') ) {
+if ( ! class_exists( 'ACF' ) ) {
 	require_once __DIR__ . '/functionality/announcement-banner.php';
 }
 require_once __DIR__ . '/functionality/admin-bar.php';
