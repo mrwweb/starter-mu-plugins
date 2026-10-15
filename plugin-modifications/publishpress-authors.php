@@ -2,10 +2,10 @@
 /**
  * Modifications to the PublishPress Authors defaults
  *
- * @package via-nova-training-mu-plugins
+ * @package _mrw-training-mu-plugins
  */
 
-namespace ViaNova\Site;
+namespace MRW\Site;
 
 add_action( 'init', __NAMESPACE__ . '\let_editors_add_authors', 11 );
 /**
